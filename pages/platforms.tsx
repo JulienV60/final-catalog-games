@@ -1,3 +1,4 @@
+import { cp } from "fs/promises";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import Layout from "../components/Layout";
@@ -10,10 +11,18 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const platforms = data.map((element) => {
     return element.platform;
   });
+  const filteredArray = platforms.filter(function (element, index, before) {
+    if (index !== 0) {
+      if (element.name !== before[index - 1].name) {
+        return element;
+      }
+    }
+  });
 
+  const [unique] = [filteredArray.splice(0, 9)];
   return {
     props: {
-      platforms: platforms,
+      platforms: unique,
     },
   };
 };
@@ -24,7 +33,7 @@ export default function Platforms({ platforms }: any) {
         <div className="row">
           {platforms.map((element: any, index: number) => {
             return (
-              <Link key={(index = 9)} href={`/platforms/${element.name}`}>
+              <Link key={index} href={`/platforms/${element.name}`}>
                 <div className="col-sm-8" style={{ width: "18rem" }}>
                   <div className="card">
                     {element?.platform_logo_url ? (
