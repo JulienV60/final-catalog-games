@@ -25,7 +25,7 @@ export default function GameByPlatform({ data }: any) {
     <Layout>
       <div className="container">
         <div className="row">
-          {gamesByPlatform.map((game: any, index: any) => {
+          {gamesByPlatform.map((element: any, index: any) => {
             return (
               <div
                 key={index}
@@ -33,9 +33,9 @@ export default function GameByPlatform({ data }: any) {
                 style={{ maxWidth: "18rem" }}
               >
                 <div className="card">
-                  {game?.cover?.url ? (
+                  {element?.cover?.url ? (
                     <img
-                      src={game.cover.url}
+                      src={element.cover.url}
                       style={{ height: "18rem" }}
                       className="card-img-top"
                     />
@@ -47,7 +47,7 @@ export default function GameByPlatform({ data }: any) {
                     />
                   )}
                   <div className="card-body">
-                    <h5 className="card-title">{game.name}</h5>
+                    <h5 className="card-title">{element.name}</h5>
                   </div>
                 </div>
               </div>

@@ -6,7 +6,6 @@ import { getDatabase } from "../src/utils/database";
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const mongodb = await getDatabase();
-
   const data = await mongodb.db().collection("games").find().toArray();
   const platforms = data.map((element) => {
     return element.platform;
