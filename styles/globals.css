@@ -14,3 +14,13 @@ a {
 * {
   box-sizing: border-box;
 }
+.row {
+  padding-left: 6rem;
+  text-align: center;
+}
+.col-sm-8 {
+  padding-top: 2rem;
+}
+.zform-inline {
+  width: 30%;
+}
