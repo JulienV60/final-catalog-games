@@ -1,0 +1,76 @@
+<section class="py-5">
+  <div class="container px-4 px-lg-5 my-5">
+    <div class="row gx-4 gx-lg-5 align-items-center">
+      <div className="col-md-6">
+        <img
+          className="card-img-top mb-5 mb-md-0"
+          src="{{ game.cover.url }}"
+          alt="..."
+        />
+      </div>
+
+      <div class="col-md-6">
+        <img
+          class="card-img-top mb-5 mb-md-0"
+          src="/images/5847507.png"
+          alt="..."
+        />
+      </div>
+
+      <div class="col-md-6">
+        <h1 className="display-5 fw-bolder">{{ game.name }}</h1>
+        <div className="fs-5 mb-5"></div>
+        <p class="lead">{{ game.summary }}</p>
+
+        <p>Price :{{ paramPrice }}$</p>
+        <br />
+
+        <p>Price :{{ price }}$</p>
+        <br />
+
+        <div class="d-flex">
+          {#
+          <input
+            class="form-control text-center me-3"
+            id="inputQuantity"
+            type="num"
+            value="1"
+            style="max-width: 3rem"
+          />
+          #} }
+          <a
+            href="/AddGamesInToPanier?gameSelect={{ game._id }}&price={{
+              paramPrice
+            }}"
+          >
+            <button
+              type="button"
+              class="btn btn-lg btn-danger"
+              data-bs-toggle="popover"
+              title="Add to basket"
+              data-bs-content="add to Basket with success!"
+            >
+              Add to Basket
+            </button>
+          </a>
+
+          <a
+            href="/AddGamesInToPanier?gameSelect={{ game._id }}&price={{
+              price
+            }}"
+          >
+            <button
+              type="button"
+              class="btn btn-lg btn-danger"
+              data-bs-toggle="popover"
+              title="Add to basket"
+              data-bs-content="add to Basket with success!"
+            >
+              Add to Basket
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

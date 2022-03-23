@@ -13,7 +13,6 @@ const Layout: React.FC = ({ children }) => {
     }
     fetchApi();
   }, []);
-
   return (
     <>
       <Head>
@@ -99,6 +98,17 @@ const Layout: React.FC = ({ children }) => {
                 type="submit"
               >
                 <a href="/api/auth/logout">Logout</a>
+              </button>
+            )}
+
+            {!cookie ? (
+              <></>
+            ) : (
+              <button
+                className="btn btn-outline-success my-2 my-sm-0"
+                type="submit"
+              >
+                <a href="/account">Mon Compte</a>
               </button>
             )}
           </div>
