@@ -1,4 +1,3 @@
-import { cp } from "fs/promises";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import Layout from "../components/Layout";
@@ -6,7 +5,7 @@ import { getDatabase } from "../src/utils/database";
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const mongodb = await getDatabase();
-  const data = await mongodb.db().collection("games").find().toArray();
+  const data = await mongodb.collection("games").find().toArray();
   const platforms = data.map((element) => {
     return element.platform;
   });

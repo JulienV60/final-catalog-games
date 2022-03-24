@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const mongodb = await getDatabase();
   const data = await mongodb
-    .db()
+
     .collection("games")
     .find({ "platform.name": `${context.params.GamesByPlatform}` })
     .toArray();

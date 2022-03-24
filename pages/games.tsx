@@ -2,9 +2,10 @@ import { GetServerSideProps } from "next";
 import Layout from "../components/Layout";
 import { getDatabase } from "../src/utils/database";
 import Link from "next/link";
+
 export const getServerSideProps: GetServerSideProps = async () => {
   const mongodb = await getDatabase();
-  const data = await mongodb.db().collection("games").find().toArray();
+  const data = await mongodb.collection("games").find().toArray();
   const datastring = JSON.stringify(data);
 
   return {

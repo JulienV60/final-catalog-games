@@ -5,7 +5,7 @@ import React from "react";
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const mongodb = await getDatabase();
   const data = await mongodb
-    .db()
+
     .collection("games")
     .find({ name: `${context.params.GameDetails}` })
     .toArray();
