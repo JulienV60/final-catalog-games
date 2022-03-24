@@ -4,15 +4,17 @@ import Link from "next/link";
 
 const Layout: React.FC = ({ children }) => {
   const [cookie, setCookie] = React.useState<any>(false);
+  console.log(cookie);
   React.useEffect(() => {
     async function fetchApi() {
-      let response = await fetch("api/cookie");
+      let response = await fetch("/api/cookie");
       response = await response.json().then((data) => data.cookie.appSession);
-
+      console.log(response);
       setCookie(response);
     }
     fetchApi();
   }, []);
+
   return (
     <>
       <Head>

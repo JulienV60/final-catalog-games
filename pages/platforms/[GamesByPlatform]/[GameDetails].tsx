@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import Layout from "../../../components/Layout";
 import { getDatabase } from "../../../src/utils/database";
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
+
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const mongodb = await getDatabase();
   const data = await mongodb
@@ -10,7 +10,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     .collection("games")
     .find({ name: `${context.params.GameDetails}` })
     .toArray();
-  console.log(data);
+
   const datastring = JSON.stringify(data);
 
   return {
@@ -22,10 +22,6 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
 
 export default function GameByPlatform({ data }: any) {
   const gameDetails = JSON.parse(data);
-
-  function addToCart(): void {
-    localStorage.clear();
-  }
 
   return (
     <Layout>
@@ -58,7 +54,6 @@ export default function GameByPlatform({ data }: any) {
             <button
               className="btn btn-outline-success my-2 my-sm-0"
               type="submit"
-              onClick={addToCart}
             >
               🛒 Ajouter au panier ?🛒
             </button>

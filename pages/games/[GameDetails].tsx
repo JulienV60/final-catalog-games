@@ -9,7 +9,7 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     .collection("games")
     .find({ name: `${context.params.GameDetails}` })
     .toArray();
-  console.log(data);
+
   const datastring = JSON.stringify(data);
 
   return {
@@ -21,7 +21,6 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
 
 export default function GameByPlatform({ data }: any) {
   const gameDetails = JSON.parse(data);
-  console.log(gameDetails);
   return (
     <Layout>
       <section className="py-5">
