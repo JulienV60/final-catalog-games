@@ -5,7 +5,6 @@ import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Badge from "@material-ui/core/Badge";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useUser } from "@auth0/nextjs-auth0";
-import { getDatabase } from "../src/utils/database";
 
 const Layout: React.FC = ({ children }) => {
   const [cookie, setCookie] = React.useState<any>("");
@@ -82,7 +81,9 @@ const Layout: React.FC = ({ children }) => {
                 </li>
                 <li className="nav-item active">
                   <Link href="/genres">
-                    <a className="nav-link user-select-none">Genres</a>
+                    <a className="nav-link user-select-none">
+                      🚧Genres In Progress 🚧
+                    </a>
                   </Link>
                 </li>
               </ul>
@@ -122,7 +123,7 @@ const Layout: React.FC = ({ children }) => {
                 type="submit"
               >
                 <a href="/account">
-                  Mon Compte{" "}
+                  Account{" "}
                   <Badge color="primary" badgeContent={itemCount}>
                     <ShoppingCartIcon />{" "}
                   </Badge>

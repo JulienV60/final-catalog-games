@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getDatabase } from "../../../../../src/utils/database";
 
-import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
+import { getSession } from "@auth0/nextjs-auth0";
 import { ObjectId } from "mongodb";
 export default async function handler(
   req: NextApiRequest,
@@ -28,8 +28,25 @@ export default async function handler(
         return element.namegame === reqnamegame;
       })
     );
-  if ((idGame.length = 1)) {
-    await mongodb.collection("panier").deleteOne;
+  console.log(idGame.length);
+  if (idGame.length >= 1) {
+    const deleTeOne = await mongodb.collection("panier").updateOne(
+      {
+        id: new ObjectId(searchTheUser?.toString()),
+      },
+      {
+        $push: {
+          UserPanier: {
+            namegame: reqnamegame.toString(),
+            quantity: -1,
+          },
+        },
+      }
+    );
+  } else {
+    const deleteMany = await mongodb.collection("panier").deleteMany({
+      id: new ObjectId(searchTheUser?.toString()),
+    });
   }
   res.redirect(`${req.headers.referer}`);
 }

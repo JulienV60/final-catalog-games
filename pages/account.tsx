@@ -2,10 +2,9 @@ import Layout from "../components/Layout";
 import { GetServerSideProps } from "next";
 import React from "react";
 import { useUser } from "@auth0/nextjs-auth0";
-import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { getDatabase } from "../src/utils/database";
 import Link from "next/link";
-import { cp } from "fs/promises";
+
 export const getServerSideProps: GetServerSideProps = async () => {
   const mongodb = await getDatabase();
 
@@ -33,10 +32,10 @@ export default function Account({ data }: any) {
   datarebuild = Object.keys(acc).map(function (key) {
     return { namegame: key, quantity: acc[key] };
   });
-  console.log(datarebuild);
+
   const { user } = useUser();
   const [count, setCount] = React.useState(1);
-  console.log(count);
+
   return (
     <div>
       <Layout>
@@ -44,10 +43,8 @@ export default function Account({ data }: any) {
           <div className="econtainer px-4 px-lg-5 my-5">
             <div className="row gx-4 gx-lg-5 align-items-center">
               <div className="alignement">
-                {" "}
                 <h1>Panier</h1>
                 <img
-                  src={user?.picture}
                   style={{ height: "8rem", width: "6rem" }}
                   className="card-img-top"
                 ></img>{" "}
@@ -79,7 +76,7 @@ export default function Account({ data }: any) {
                             href={`/api/panier/addPanier/deletePanier?i&namegame=${element.namegame}&id=${element._id}&clickCount=${count}`}
                           >
                             <button type="button" className="btn btn-primary">
-                              Delete
+                              Delete 🚧In Progress🚧
                             </button>
                           </Link>
                         </p>
