@@ -100,36 +100,42 @@ const Layout: React.FC = ({ children }) => {
             <form className="zform-inline" action="/api/auth/login"></form>
 
             {!cookie ? (
-              <button
-                className="btn btn-outline-success my-2 my-sm-0"
-                type="submit"
-              >
-                <a href="/api/auth/login">Login</a>
-              </button>
+              <Link href="/api/auth/login">
+                <button
+                  className="btn btn-outline-success my-2 my-sm-0"
+                  type="submit"
+                >
+                  <a>Login</a>
+                </button>
+              </Link>
             ) : (
-              <button
-                className="btn btn-outline-success my-2 my-sm-0"
-                type="submit"
-              >
-                <a href="/api/auth/logout">Logout</a>
-              </button>
+              <Link href="/api/auth/logout">
+                <button
+                  className="btn btn-outline-success my-2 my-sm-0"
+                  type="submit"
+                >
+                  <a>Logout</a>
+                </button>
+              </Link>
             )}
 
             {!cookie ? (
               <></>
             ) : (
-              <button
-                className="btn btn-outline-success my-2 my-sm-0"
-                type="submit"
-              >
-                <a href="/account">
-                  Account{" "}
-                  <Badge color="primary" badgeContent={itemCount}>
-                    <ShoppingCartIcon />{" "}
-                  </Badge>
-                  <ButtonGroup></ButtonGroup>
-                </a>
-              </button>
+              <Link href="/account">
+                <button
+                  className="btn btn-outline-success my-2 my-sm-0"
+                  type="submit"
+                >
+                  <a>
+                    Account{" "}
+                    <Badge color="primary" badgeContent={itemCount}>
+                      <ShoppingCartIcon />{" "}
+                    </Badge>
+                    <ButtonGroup></ButtonGroup>
+                  </a>
+                </button>
+              </Link>
             )}
           </div>
         </nav>

@@ -34,7 +34,7 @@ export default function GameByPlatform({ data }: any) {
           <div className="row gx-4 gx-lg-5 align-items-center">
             {gameDetails.map((element: any, index: any) => {
               return (
-                <div className="alignement">
+                <div key={index} className="alignement">
                   <h5 className="display-5 fw-bolder">{element.name}</h5>
                   <p className="lead">{element.summary}</p>
                   <div key={index} style={{ maxWidth: "22rem" }}>

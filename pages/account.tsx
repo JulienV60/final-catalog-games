@@ -45,9 +45,10 @@ export default function Account({ data }: any) {
               <div className="alignement">
                 <h1>Panier</h1>
                 <img
+                  src={user?.picture}
                   style={{ height: "8rem", width: "6rem" }}
                   className="card-img-top"
-                ></img>{" "}
+                ></img>
                 <h5 className="display-5 fw-bolder">{user?.nickname}</h5>
                 <p className="lead">{user?.name}</p>
                 <div style={{ maxWidth: "22rem" }}></div>
@@ -58,7 +59,10 @@ export default function Account({ data }: any) {
               <div className="row">
                 {datarebuild.map((element: any, index: any) => {
                   return (
-                    <div className="ecard text-white bg-secondary mb-3">
+                    <div
+                      key={index}
+                      className="ecard text-white bg-secondary mb-3"
+                    >
                       <div className="card-header">{element.namegame}</div>
                       <div className="card-body">
                         <h5 className="card-title">
@@ -66,6 +70,7 @@ export default function Account({ data }: any) {
                         </h5>
                         <p className="card-text">
                           <Link
+                            key={index}
                             href={`/api/panier/addPanier?i&namegame=${element.namegame}&clickCount=${count}`}
                           >
                             <button type="button" className="btn btn-primary">
@@ -73,6 +78,7 @@ export default function Account({ data }: any) {
                             </button>
                           </Link>
                           <Link
+                            key={index}
                             href={`/api/panier/addPanier/deletePanier?i&namegame=${element.namegame}&id=${element._id}&clickCount=${count}`}
                           >
                             <button type="button" className="btn btn-primary">

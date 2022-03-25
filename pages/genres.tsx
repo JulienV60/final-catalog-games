@@ -30,7 +30,7 @@ export default function Genres({ genres }: any) {
             <h5 className="display-5 fw-bolder"> 🚧Genres In Progress 🚧</h5>
             {genres.map((element: any, index: any) => {
               return (
-                <div className="alignement">
+                <div key={index} className="alignement">
                   <h5 className="display-5 fw-bolder">{element}</h5>
                 </div>
               );
