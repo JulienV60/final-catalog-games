@@ -2,6 +2,8 @@ import { GetServerSideProps } from "next";
 import Layout from "../../components/Layout";
 import { getDatabase } from "../../src/utils/database";
 import React from "react";
+import Link from "next/link";
+import { useUser } from "@auth0/nextjs-auth0";
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const mongodb = await getDatabase();
   const data = await mongodb
@@ -20,7 +22,12 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
 };
 
 export default function GameByPlatform({ data }: any) {
+  const { user } = useUser();
+  const [count, setCount] = React.useState(0);
   const gameDetails = JSON.parse(data);
+  const id = gameDetails[0]._id;
+  const name = gameDetails[0].name;
+  const userName = user?.nickname;
   return (
     <Layout>
       <section className="py-5">
@@ -48,14 +55,18 @@ export default function GameByPlatform({ data }: any) {
                   </div>{" "}
                 </div>
               );
-            })}
-            <button
-              className="btn btn-outline-primary my-2 my-sm-0"
-              type="submit"
+            })}{" "}
+            <Link
+              href={`/api/panier/addPanier?idgame=${id}&namegame=${name}&clickCount=${count}`}
             >
-              🛒
-              <a href="/#">Ajouter au panier ?</a>🛒
-            </button>
+              <button
+                className="btn btn-outline-success my-2 my-sm-0"
+                type="submit"
+                onClick={() => setCount(count + 1)}
+              >
+                Ajouter au panier ?🛒
+              </button>
+            </Link>
           </div>
         </div>
       </section>

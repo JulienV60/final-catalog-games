@@ -24,16 +24,19 @@ export default function Account({ data }: any) {
   let datarebuild = JSON.parse(data);
   const results = datarebuild[0].UserPanier;
   results.shift();
+
   const acc = results.reduce(function (acc: any, obj: any) {
     acc[obj.namegame] = (acc[obj.namegame] || 0) + obj.quantity;
+
     return acc;
   }, {});
   datarebuild = Object.keys(acc).map(function (key) {
     return { namegame: key, quantity: acc[key] };
   });
-
+  console.log(datarebuild);
   const { user } = useUser();
-
+  const [count, setCount] = React.useState(1);
+  console.log(count);
   return (
     <div>
       <Layout>
@@ -58,10 +61,28 @@ export default function Account({ data }: any) {
               <div className="row">
                 {datarebuild.map((element: any, index: any) => {
                   return (
-                    <div className="ecard text-white bg-dark mb-3">
+                    <div className="ecard text-white bg-secondary mb-3">
+                      <div className="card-header">{element.namegame}</div>
                       <div className="card-body">
-                        <h5 className="card-title">{element.quantity}</h5>
-                        <p className="card-text">{element.namegame}</p>
+                        <h5 className="card-title">
+                          Quantity: {element.quantity}
+                        </h5>
+                        <p className="card-text">
+                          <Link
+                            href={`/api/panier/addPanier?i&namegame=${element.namegame}&clickCount=${count}`}
+                          >
+                            <button type="button" className="btn btn-primary">
+                              Add
+                            </button>
+                          </Link>
+                          <Link
+                            href={`/api/panier/addPanier/deletePanier?i&namegame=${element.namegame}&id=${element._id}&clickCount=${count}`}
+                          >
+                            <button type="button" className="btn btn-primary">
+                              Delete
+                            </button>
+                          </Link>
+                        </p>
                       </div>
                     </div>
                   );

@@ -7,12 +7,8 @@ export default withApiAuthRequired(async function handler(
   res: NextApiResponse
 ) {
   const session = getSession(req, res);
-
-  const reqidgame = req.query.idgame;
   const reqnamegame = req.query.namegame;
   const name = session?.user.name;
-
-  const quantity = req.query.clickCount;
 
   const mongodb = await getDatabase();
 
@@ -28,6 +24,7 @@ export default withApiAuthRequired(async function handler(
     {
       $push: {
         UserPanier: {
+          id: new ObjectId(),
           namegame: reqnamegame.toString(),
           quantity: 1,
         },
