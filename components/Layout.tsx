@@ -1,17 +1,28 @@
 import Head from "next/head";
 import React from "react";
 import Link from "next/link";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
+import Badge from "@material-ui/core/Badge";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { useUser } from "@auth0/nextjs-auth0";
+import { getDatabase } from "../src/utils/database";
 
 const Layout: React.FC = ({ children }) => {
-  const [cookie, setCookie] = React.useState<any>(false);
-  console.log(cookie);
+  const [cookie, setCookie] = React.useState<any>("");
+  const [itemCount, setItemCount] = React.useState(1);
+
+  const { user } = useUser();
+
   React.useEffect(() => {
     async function fetchApi() {
-      let response = await fetch("/api/cookie");
+      let response = await fetch(
+        `/api/cookie?user=${user?.name}&${user?.nickname}`
+      );
       response = await response.json().then((data) => data.cookie.appSession);
-      console.log(response);
+
       setCookie(response);
     }
+
     fetchApi();
   }, []);
 
@@ -110,7 +121,13 @@ const Layout: React.FC = ({ children }) => {
                 className="btn btn-outline-success my-2 my-sm-0"
                 type="submit"
               >
-                <a href="/account">Mon Compte</a>
+                <a href="/account">
+                  Mon Compte{" "}
+                  <Badge color="primary" badgeContent={itemCount}>
+                    <ShoppingCartIcon />{" "}
+                  </Badge>
+                  <ButtonGroup></ButtonGroup>
+                </a>
               </button>
             )}
           </div>
