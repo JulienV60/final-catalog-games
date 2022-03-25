@@ -48,7 +48,7 @@ export default function Account({ data }: any) {
                   src={user?.picture}
                   style={{ height: "8rem", width: "6rem" }}
                   className="card-img-top"
-                ></img>{" "}
+                ></img>
                 <h5 className="display-5 fw-bolder">{user?.nickname}</h5>
                 <p className="lead">{user?.name}</p>
                 <div style={{ maxWidth: "22rem" }}></div>
